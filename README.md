@@ -30,7 +30,7 @@ Almost everything you'd change lives in **`lib/data.ts`**: your bio line, roles,
 
 ```
 SMTP_HOST=smtp.gmail.com
-SMTP_PORT=465
+SMTP_PORT=465   # optional; defaults to 465 if omitted
 SMTP_USER=your.address@gmail.com
 SMTP_PASS=the-16-character-app-password
 CONTACT_TO=vimalbalaji.p@northeastern.edu
@@ -42,7 +42,7 @@ Never commit `.env.local`; it's already in `.gitignore`.
 
 1. Push this folder to a new GitHub repo.
 2. Go to https://vercel.com, sign in with GitHub, click **Add New → Project**, and import the repo.
-3. Under **Environment Variables**, add the five `SMTP_*` / `CONTACT_TO` values.
+3. Under **Environment Variables**, add `SMTP_HOST`, `SMTP_USER`, `SMTP_PASS`, and `CONTACT_TO` (`SMTP_PORT` is optional and defaults to 465).
 4. Click **Deploy**. You'll get a `*.vercel.app` URL; every push to `main` redeploys automatically.
 
 GitHub Pages won't run the contact API, since it only serves static files. Vercel (or Netlify) runs the Node.js route for free.

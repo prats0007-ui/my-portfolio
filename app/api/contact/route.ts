@@ -56,7 +56,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "The contact form isn't set up yet." }, { status: 500 });
   }
 
+  // SMTP_PORT is optional; implicit TLS on 465 is the default.
   const port = Number(SMTP_PORT || 465);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    console.error("Contact form: SMTP_PORT must be an integer between 1 and 65535.");
+    return NextResponse.json({ error: "The contact form isn't set up yet." }, { status: 500 });
+  }
   const transporter = nodemailer.createTransport({
     host: SMTP_HOST,
     port,
